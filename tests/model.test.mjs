@@ -1,21 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { cleanLines } from '../web/model.mjs';
-test('trims, removes blanks and preserves first-seen order', () => {
-  assert.deepEqual(cleanLines('  Halifax\nLangley\nHalifax\n\nVancouver  '), {
-    text: 'Halifax\nLangley\nVancouver', count: 3, removed: 1,
-  });
+import {series,issueTotals} from '../web/model.mjs';
+test('separate brands and absent ranks',()=>{
+ assert.deepEqual(series([{year:2024,brands:[{brand:'Rogers',accepted:5}]},{year:2025,brands:[{brand:'Rogers/Shaw',accepted:9}]}],'Rogers','accepted'),[[2024,5],[2025,null]]);
 });
-test('supports Windows and old Mac line endings', () => {
-  assert.equal(cleanLines('a\r\nb\ra').text, 'a\nb');
+test('one complaint can raise several issues',()=>{
+ const r=[['a','X','Nova Scotia','Wireless','Billing'],['a','X','Nova Scotia','Wireless','Service'],['b','Y','Ontario','TV','Billing']];
+ const g=issueTotals(r,{province:'Nova Scotia'});assert.equal(g.count,2);assert.equal(g.distinct,1);
 });
-test('empty text and whitespace produce an empty result', () => {
-  assert.deepEqual(cleanLines(' \n\t'), { text: '', count: 0, removed: 0 });
-});
-test('preserves case and Unicode', () => {
-  assert.equal(cleanLines('Québec\nquébec\n東京\nQuébec').text, 'Québec\nquébec\n東京');
-});
-test('treats markup as ordinary text', () => {
-  assert.equal(cleanLines('<script>alert(1)</script>\n<script>alert(1)</script>').text, '<script>alert(1)</script>');
-});
-test('rejects non-text input', () => { assert.throws(() => cleanLines(null), TypeError); });

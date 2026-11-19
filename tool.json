@@ -1,16 +1,46 @@
 {
-  "id": "coolcode-tool-template",
-  "title": "CoolCode Tool Starter",
-  "description": "A browser-only example that trims lines and removes exact duplicates.",
-  "category": "security",
-  "tags": ["text", "lines", "duplicates"],
-  "icon": "scan-search",
-  "url": "/coolcode-tool-template/",
-  "source": "https://github.com/jsdyer/coolcode-tool-template",
+  "id": "ccts-ledger",
+  "title": "CCTS Ledger",
+  "description": "Compare telecom providers across CCTS annual reports and examine the issues raised in an official workbook privately.",
+  "category": "explorers",
+  "tags": [
+    "telecom",
+    "complaints",
+    "CCTS",
+    "provider",
+    "Bell",
+    "TELUS"
+  ],
+  "icon": "messages-square",
+  "url": "/ccts-ledger/",
+  "source": "https://github.com/jsdyer/ccts-ledger",
   "hosting": "project",
   "access": "browser",
   "data_info": {
-    "mode": "local",
-    "detail": "The browser reads the text you paste and compares its lines."
+    "mode": "mixed",
+    "detail": "CCTS annual reports supply provider counts and outcome rates. Local files add the issue detail from its downloadable workbooks.",
+    "cadence": "Monthly",
+    "probes": [
+      {
+        "label": "Data retrieved",
+        "url": "https://coolcode.ca/ccts-ledger/data/index.json",
+        "path": [
+          "retrieved"
+        ],
+        "count_at": {
+          "path": [
+            "count"
+          ],
+          "unit": "provider-year entries"
+        }
+      },
+      {
+        "label": "Latest report end",
+        "url": "https://coolcode.ca/ccts-ledger/data/index.json",
+        "path": [
+          "latest"
+        ]
+      }
+    ]
   }
 }

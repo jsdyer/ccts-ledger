@@ -1,0 +1,287 @@
+{
+ "retrieved": "2026-11-19",
+ "count": 30,
+ "first": "2022-08-01",
+ "latest": "2025-07-31",
+ "editions": [
+  {
+   "year": 2023,
+   "start": "2022-08-01",
+   "end": "2023-07-31",
+   "url": "https://pub.ccts-cprst.ca/2022-2023-annual-report/working-with-service-providers/",
+   "landing": "https://www.ccts-cprst.ca/report/annual-report-2022-2023/",
+   "workbooks": {
+    "operational": "https://www.ccts-cprst.ca/wp-content/uploads/2024/01/Operational-Statistics-2022-2023.xlsx",
+    "issues": "https://www.ccts-cprst.ca/wp-content/uploads/2024/01/Detailed-Analysis-of-Leading-Complaint-Issues-2022-2023.xlsx"
+   },
+   "brands": [
+    {
+     "brand": "Rogers",
+     "accepted": 2893,
+     "share": 19.8,
+     "closed": 2714,
+     "resolution": 89.7,
+     "escalation": 17.0
+    },
+    {
+     "brand": "Bell",
+     "accepted": 2355,
+     "share": 16.1,
+     "closed": 2068,
+     "resolution": 84.4,
+     "escalation": 25.0
+    },
+    {
+     "brand": "TELUS",
+     "accepted": 1798,
+     "share": 12.3,
+     "closed": 1769,
+     "resolution": 89.6,
+     "escalation": 11.6
+    },
+    {
+     "brand": "Fido",
+     "accepted": 1704,
+     "share": 11.7,
+     "closed": 1634,
+     "resolution": 91.6,
+     "escalation": 13.0
+    },
+    {
+     "brand": "Koodo",
+     "accepted": 1016,
+     "share": 7.0,
+     "closed": 1054,
+     "resolution": 90.3,
+     "escalation": 11.2
+    },
+    {
+     "brand": "Freedom Mobile",
+     "accepted": 837,
+     "share": 5.7,
+     "closed": 845,
+     "resolution": 92.9,
+     "escalation": 8.3
+    },
+    {
+     "brand": "Virgin Plus",
+     "accepted": 836,
+     "share": 5.7,
+     "closed": 798,
+     "resolution": 87.7,
+     "escalation": 28.9
+    },
+    {
+     "brand": "Videotron",
+     "accepted": 490,
+     "share": 3.4,
+     "closed": 458,
+     "resolution": 90.2,
+     "escalation": 14.0
+    },
+    {
+     "brand": "Shaw",
+     "accepted": 435,
+     "share": 3.0,
+     "closed": 415,
+     "resolution": 88.2,
+     "escalation": 15.2
+    },
+    {
+     "brand": "Fizz",
+     "accepted": 190,
+     "share": 1.3,
+     "closed": 190,
+     "resolution": 92.1,
+     "escalation": 8.9
+    }
+   ]
+  },
+  {
+   "year": 2024,
+   "start": "2023-08-01",
+   "end": "2024-07-31",
+   "url": "https://pub.ccts-cprst.ca/2023-2024-annual-report/working-with-service-providers/",
+   "landing": "https://www.ccts-cprst.ca/report/annual-report-2023-2024/",
+   "workbooks": {
+    "operational": "https://www.ccts-cprst.ca/wp-content/uploads/2025/01/Operational-Statistics-2023-2024.xlsx",
+    "issues": "https://www.ccts-cprst.ca/wp-content/uploads/2025/01/Detailed-Analysis-of-Leading-Complaint-Issues-2023-2024.xlsx"
+   },
+   "brands": [
+    {
+     "brand": "Rogers",
+     "accepted": 4855,
+     "share": 24.1,
+     "closed": 4826,
+     "resolution": 90.5,
+     "escalation": 14.8
+    },
+    {
+     "brand": "Bell",
+     "accepted": 3430,
+     "share": 17.0,
+     "closed": 3170,
+     "resolution": 83.4,
+     "escalation": 28.6
+    },
+    {
+     "brand": "TELUS",
+     "accepted": 2757,
+     "share": 13.7,
+     "closed": 2525,
+     "resolution": 89.6,
+     "escalation": 11.5
+    },
+    {
+     "brand": "Fido",
+     "accepted": 2030,
+     "share": 10.1,
+     "closed": 2058,
+     "resolution": 90.7,
+     "escalation": 12.4
+    },
+    {
+     "brand": "Koodo",
+     "accepted": 965,
+     "share": 4.8,
+     "closed": 904,
+     "resolution": 88.1,
+     "escalation": 12.2
+    },
+    {
+     "brand": "Freedom Mobile",
+     "accepted": 885,
+     "share": 4.4,
+     "closed": 871,
+     "resolution": 94.0,
+     "escalation": 8.3
+    },
+    {
+     "brand": "Virgin Plus",
+     "accepted": 850,
+     "share": 4.2,
+     "closed": 808,
+     "resolution": 85.4,
+     "escalation": 31.3
+    },
+    {
+     "brand": "Public Mobile",
+     "accepted": 793,
+     "share": 3.9,
+     "closed": 515,
+     "resolution": 70.3,
+     "escalation": 47.8
+    },
+    {
+     "brand": "Shaw",
+     "accepted": 705,
+     "share": 3.5,
+     "closed": 672,
+     "resolution": 88.2,
+     "escalation": 17.4
+    },
+    {
+     "brand": "Videotron",
+     "accepted": 422,
+     "share": 2.1,
+     "closed": 436,
+     "resolution": 87.4,
+     "escalation": 19.3
+    }
+   ]
+  },
+  {
+   "year": 2025,
+   "start": "2024-08-01",
+   "end": "2025-07-31",
+   "url": "https://pub.ccts-cprst.ca/2024-2025-annual-report/working-with-service-providers/",
+   "landing": "https://www.ccts-cprst.ca/report/annual-report-2024-2025/",
+   "workbooks": {
+    "operational": "https://www.ccts-cprst.ca/wp-content/uploads/2025/12/Operational-Statistics-2024-2025.xlsx",
+    "issues": "https://www.ccts-cprst.ca/wp-content/uploads/2025/12/Detailed-Analysis-of-Leading-Complaint-Issues-2024-2025.xlsx"
+   },
+   "brands": [
+    {
+     "brand": "Rogers/Shaw",
+     "accepted": 6485,
+     "share": 27.4,
+     "closed": 5832,
+     "resolution": 87.9,
+     "escalation": 18.3
+    },
+    {
+     "brand": "TELUS",
+     "accepted": 4904,
+     "share": 20.7,
+     "closed": 4471,
+     "resolution": 90.3,
+     "escalation": 15.0
+    },
+    {
+     "brand": "Bell",
+     "accepted": 3966,
+     "share": 16.8,
+     "closed": 3819,
+     "resolution": 82.6,
+     "escalation": 29.2
+    },
+    {
+     "brand": "Fido",
+     "accepted": 1877,
+     "share": 7.9,
+     "closed": 1469,
+     "resolution": 88.4,
+     "escalation": 17.1
+    },
+    {
+     "brand": "Koodo",
+     "accepted": 1126,
+     "share": 4.8,
+     "closed": 1071,
+     "resolution": 88.4,
+     "escalation": 16.3
+    },
+    {
+     "brand": "Freedom Mobile",
+     "accepted": 940,
+     "share": 4.0,
+     "closed": 928,
+     "resolution": 92.3,
+     "escalation": 9.9
+    },
+    {
+     "brand": "Virgin Plus",
+     "accepted": 831,
+     "share": 3.5,
+     "closed": 836,
+     "resolution": 84.2,
+     "escalation": 31.2
+    },
+    {
+     "brand": "Vidéotron",
+     "accepted": 394,
+     "share": 1.7,
+     "closed": 398,
+     "resolution": 88.4,
+     "escalation": 11.8
+    },
+    {
+     "brand": "Public Mobile",
+     "accepted": 312,
+     "share": 1.3,
+     "closed": 558,
+     "resolution": 58.2,
+     "escalation": 49.8
+    },
+    {
+     "brand": "Chatr",
+     "accepted": 280,
+     "share": 1.2,
+     "closed": 238,
+     "resolution": 83.2,
+     "escalation": 26.9
+    }
+   ]
+  }
+ ]
+}

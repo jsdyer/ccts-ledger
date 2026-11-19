@@ -1,115 +1,19 @@
-# CoolCode browser tool template
+# CCTS Ledger
 
-A starting point for independent tools at `coolcode.ca/<repo>/`: a working local-text
-example, responsive UI, Python standard-library build, Node tests, PR checks and Pages
-publication. No npm install is needed.
-
-## Using the example
+[Open CCTS Ledger](https://coolcode.ca/ccts-ledger/)
 
 <!-- coolcode:guide -->
-The first occurrence of each trimmed line keeps its place. Compare the output with the original text before copying the result.
+Compare Rogers in 2023–24 with the Rogers/Shaw entry in 2024–25, where the published accepted count was 6,485. Open a complaint issues workbook to filter by provider, province and service and count distinct complaints separately from issue rows.
 <!-- /coolcode:guide -->
 
-For a real tool, replace this paragraph with one or two plain-text sentences
-about an example, a limit or how to interpret the results. Keep the source,
-coverage, refresh behaviour and a worked example in this README as appropriate.
-When updating a tool, revise any details its behaviour has changed and keep the
-homepage's shorter data-source sentence in `tool.json` accurate.
-The hub imports the marked note into the catalogue README.
+The comparison uses the first ten provider entries in each CCTS annual report’s leading-provider HTML table for 2022–23, 2023–24 and 2024–25. It presents the numeric observations with original report links. Select a provider, then switch between accepted count, concluded count, share, escalation rate and resolution rate. The history follows the exact published brand and shows missing entries explicitly. Rogers and Shaw were separate earlier. A parent-company merger does not justify silently summing brands or transferring their histories.
 
-## One-time template setup
+Resolution rate uses concluded complaints as its denominator. A complaint may be accepted in one year and concluded in the following year. The published share of complaints uses all accepted complaints. A subscriber-normalized rate would require provider-level customer counts for matching brands, services and time periods. The annual comparison does not calculate that rate.
 
-Enable **Settings → General → Template repository** here. This repository does not
-need Pages enabled: its workflow builds/tests but intentionally skips deployment.
-New copies also skip deployment until `scripts/init.py` sets the tool ID to match
-their repository name. This lets you create the repo before configuring Pages.
+Use the two official .xlsx download links to get the selected year’s workbooks directly from CCTS. Choose one file locally. Workbook parsing runs in a worker on your device. Issue files count issue rows and distinct complaint IDs for your choice of provider, province and service. Operational files aggregate their recorded statuses, including rows accepted before the report period. IDs in different workbooks cannot be joined. Each new upload replaces the previous workbook. A reset clears local rows. The repository carries no CCTS workbook or complaint-level records. CCTS provides the workbook terms on its Licence and Notes sheet.
 
-## Start a new tool
+[Annual and mid-year report directory](https://www.ccts-cprst.ca/codes-stats-and-reports/ccts-reports/annual-and-mid-year-reports/). The monthly import checks for new completed annual editions, validates the report layout and stores factual comparisons. Install lxml and run `python scripts/refresh.py` to refresh the public table.
 
-1. Select **Use this template → Create a new repository**, choose owner `jsdyer`,
-   a unique lowercase name such as `my-tool`, and public visibility.
-2. Clone the new repository. Use Python 3.12+ and Node 24+.
-3. Set the identity, using a slug that matches the repository name:
+## Development
 
-```sh
-python3 scripts/init.py my-tool --title "My Tool" --description "Describe what this tool does."
-```
-
-Review the category, tags and icon in `tool.json`. `access: "browser"` tells the main
-catalogue that the tool works immediately without installation. `--owner` supports a different
-GitHub owner, but only projects owned by `jsdyer` inherit the CoolCode domain.
-
-4. Replace the example in `web/` and its tests. Update the privacy explanation,
-   source attribution and README to describe the real tool.
-5. Test and preview:
-
-```sh
-node --test tests/*.test.mjs
-python3 -m unittest discover -s tests -v
-python3 scripts/build.py
-python3 -m http.server 8000 --directory dist
-```
-
-Open `http://localhost:8000/`. The example trims lines, skips blanks and removes exact
-duplicates, preserving first-seen order and capitalization. It makes no API requests
-and does not persist text. Update that explanation if your app behaves differently.
-
-CI also tests the browser flow and mobile layout at a project subpath. Replace the
-sample assertions in `tests/browser_smoke.py` when implementing your own UI. To run
-that check locally (optional for ordinary preview):
-
-```sh
-python3 -m venv .venv
-. .venv/bin/activate
-python3 -m pip install -r tests/browser-requirements.txt
-python3 -m playwright install --with-deps chromium
-python3 tests/browser_smoke.py
-```
-
-Playwright is a test-only dependency; the app and its static build do not use it.
-
-## Publish and register
-
-When the actual tool is ready, in the **new tool repository** set **Settings → Pages → Build and deployment →
-Source → GitHub Actions**. Push to `main`, or manually run **Browser tool · Check and
-publish** after enabling Pages. If the initial deployment ran before Pages was enabled,
-enable it and rerun. PRs only check/build and provide a downloadable preview artifact.
-
-Keep asset paths and module imports relative. Check `https://coolcode.ca/my-tool/`.
-Do not add a CNAME or set `coolcode.ca` as this project's custom domain; the account
-site supplies it. Only successful `main` builds deploy.
-
-After verifying the app, copy the reviewed object from `tool.json` into `data/tools.json`
-in [the main site](https://github.com/jsdyer/jsdyer.github.io). Each tool still builds
-independently. Update the hub record when listing metadata changes; the hub is the
-authority for discovery. Ordinary app updates touch only this repository.
-
-The main site separates **Use in your browser** from **Install yourself**. An app
-that asks for a file is still a browser tool. Standalone Linux packages should start
-in their own repositories with their own build/release workflow, rather than copying
-this browser-only scaffold. Their hub record uses `access: "install"`, links to an
-installation guide, and includes `requirements`.
-
-## Files
-
-| Path | Purpose |
-| --- | --- |
-| `tool.json` | Page metadata and a ready-to-copy catalogue record |
-| `web/` | HTML, responsive CSS, DOM interactions and separate model logic |
-| `scripts/build.py` | Escape metadata and build `web/` into `dist/` |
-| `scripts/init.py` | Set a new project's identity |
-| `tests/` | Application and builder tests |
-| `.github/workflows/pages.yml` | Check PRs and publish successful main builds |
-| `AGENTS.md` | Instructions for future coding work |
-
-Namespace optional storage as `coolcode:<tool-id>:<key>`; CoolCode paths share a
-browser origin. Don't save pasted text/uploads by default. Document external APIs
-and send only the information needed for the selected action. Never embed secrets.
-
-Scheduled refresh is opt-in. Validate source data before deploying, display its date,
-and preserve the last good deployment on failure. Public-repository schedules can
-stop after 60 days without repository activity.
-
-Templates don't propagate future edits automatically. Adopt fixes explicitly and
-consider a versioned reusable workflow once several tools confirm the shared process.
-Choose and add the intended software license before distributing a new project.
+Run `node --test tests/*.test.mjs`, `python -m unittest discover -s tests` and `python scripts/build.py`. Submit reviewed data and code together. Every Pages deployment runs its desktop and mobile browser checks first.

@@ -29,22 +29,36 @@ def main():
                 errors = []
                 page.on("pageerror", lambda error: errors.append(str(error)))
                 page.goto(f"http://127.0.0.1:{server.server_port}/example-tool/")
-                page.locator("#sample").click()
-                assert page.locator("#output").input_value() == "Halifax\nLangley\nVancouver"
-                assert "1 duplicate removed" in page.locator("#status").inner_text()
-                page.locator("#input").fill('<img src=x onerror="alert(1)">\n<img src=x onerror="alert(1)">')
-                assert page.locator("#output").input_value() == '<img src=x onerror="alert(1)">'
-                assert page.locator("img").count() == 0
-                page.locator("#clear").click()
-                assert page.locator("#output").input_value() == ""
-                page.locator("#sample").click()
+                page.wait_for_selector("#bars .row")
+                page.select_option("#period","2025")
+                page.select_option("#brand","Rogers/Shaw")
+                assert "6,485" in page.locator("#metrics").inner_text()
+                page.select_option("#metric","resolution")
+                assert "87.9%" in page.locator("#history").inner_text()
+                assert page.locator("#issuefile").get_attribute("href").endswith(".xlsx")
+                import io, zipfile
+                package = io.BytesIO()
+                with zipfile.ZipFile(package, "w", zipfile.ZIP_DEFLATED) as archive:
+                    rows = [["Complaint","Service Provider","Primary Category","Province","Line of Business"],["a","Provider","Billing","Nova Scotia","Wireless"],["a","Provider","Service","Nova Scotia","Wireless"]]
+                    markup = "<worksheet><sheetData>"
+                    for i, cells in enumerate(rows, 1):
+                        markup += '<row r="%d">' % i
+                        for j, value in enumerate(cells):
+                            markup += f'<c r="{chr(65+j)}{i}" t="inlineStr"><is><t>{value}</t></is></c>'
+                        markup += "</row>"
+                    archive.writestr("xl/worksheets/sheet2.xml", markup + "</sheetData></worksheet>")
+                page.locator("#file").set_input_files({"name":"test.xlsx","mimeType":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","buffer":package.getvalue()})
+                page.wait_for_selector("#local:visible")
+                assert "2 issue rows across 1 distinct complaint" in page.locator("#localCount").inner_text()
+                page.click("#clear")
+                assert page.locator("#local").is_hidden()
                 page.screenshot(path=str(screenshots / "desktop.png"), full_page=True)
                 page.set_viewport_size({"width": 390, "height": 844})
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                 page.screenshot(path=str(screenshots / "mobile.png"), full_page=True)
                 assert not errors, errors
                 browser.close()
-            print("Browser checks passed: project subpath, sample, clear, safe text and mobile layout")
+            print("Browser checks passed: published records, interactive filters and mobile layout")
         finally:
             server.shutdown()
 
