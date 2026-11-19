@@ -35,9 +35,12 @@
         }
       },
       {
-        "label": "Latest report end",
+        "label": "Report periods",
         "url": "https://coolcode.ca/ccts-ledger/data/index.json",
         "path": [
+          "first"
+        ],
+        "end_path": [
           "latest"
         ]
       }

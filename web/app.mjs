@@ -16,7 +16,9 @@ function show(){
  bars('bars',edition.brands.toSorted((a,b)=>b[metric]-a[metric]).map(b=>[b.brand,b[metric]]),n=>valueText(n,metric));
 }
 function localView(){
- const d=issueTotals(currentFile.rows,{provider:$('localBrand').value,province:$('province').value,service:$('service').value});
+ const province=$('province').value;
+ select('city',[['','All cities and areas'],...optionPairs(currentFile.rows.filter(r=>!province||r[2]===province).map(r=>r[5]))]);
+ const d=issueTotals(currentFile.rows,{city:$('city').value,provider:$('localBrand').value,province:$('province').value,service:$('service').value});
  $('localCount').textContent=number(d.count)+' '+(currentFile.type==='issues'?'issue rows':'operational rows')+' across '+number(d.distinct)+' distinct complaint IDs in this workbook. All recorded rows matching your selection are included.';
  bars('localRows',d.groups,n=>number(n));
 }
@@ -33,6 +35,8 @@ async function openFile(){
   for(const [id,column,label] of [['localBrand',1,'All providers'],['province',2,'All provinces'],['service',3,'All services']]){
    select(id,[['',label],...optionPairs(result.rows.map(r=>r[column]))]);$(id).value='';$(id).closest('label').hidden=result.type==='operational'&&column>1;
   }
+  $('city').closest('label').hidden=result.type==='operational';
+  $('city').replaceChildren();
   $('localStatus').textContent=f.name+' · '+(result.type==='issues'?'Issue categories':'Recorded complaint statuses');$('local').hidden=false;localView();
  };
  currentWorker.onerror=()=>{if(worker===currentWorker){finish();$('localStatus').textContent='The workbook could not be read. Try the official download above.';}};
@@ -45,7 +49,7 @@ async function start(){
  select('period',[...index.editions].reverse().map(e=>[String(e.year),(e.year-1)+'–'+e.year]));
  for(const id of ['period','brand','metric'])$(id).onchange=show;
  $('export').onclick=()=>download('ccts-'+edition.year+'.csv',toCsv([Object.keys(edition.brands[0]),...edition.brands.map(r=>Object.values(r))]));
- for(const id of ['localBrand','province','service'])$(id).onchange=localView;
+ for(const id of ['localBrand','province','city','service'])$(id).onchange=localView;
  $('file').onchange=openFile;$('clear').onclick=clearFile;show();
 }
 start().catch(()=>{$('edition').textContent='Unable to load the comparison. Open the report source below or reload.';});

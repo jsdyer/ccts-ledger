@@ -50,7 +50,7 @@ export async function readWorkbook(buffer){
   }
   const val=field=>values[columns[field]]||'';
   if(!val('Complaint')||!val('Service Provider'))continue;
-  rows.push([val('Complaint'),val('Service Provider'),val('Province'),val('Line of Business'),(type==='issues'?val('Primary Category'):(val('Status')||val('Closed')))||'Unspecified']);
+  rows.push([val('Complaint'),val('Service Provider'),val('Province'),val('Line of Business'),(type==='issues'?val('Primary Category'):(val('Status')||val('Closed')))||'Unspecified',val('City/Area')]);
  }
  if(!rows.length)throw Error('The official annual workbook layout was not found.');
  return {type,rows};
